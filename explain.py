@@ -3,7 +3,7 @@ from util.data_process import *
 from util.data import load_data
 from util.pytorchtools import EarlyStopping
 from model import basehgnn
-from Explainer import RAIC
+from Explainer import RHGIB
 import pandas as pd
 
 import os
@@ -18,7 +18,7 @@ scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min')
 net.load_state_dict(torch.load('base_{}.pt'.format(args.dataset), map_location = 'cuda:0'))
 num_etypes = len(dl.links['count'])*2+1
 
-explainer = RAIC(num_etypes, g, net, features_list, in_dims, args.hidden_dim, args.khop, device)
+explainer = RHGIB(num_etypes, g, net, features_list, in_dims, args.hidden_dim, args.khop, device)
 explainer.vae_train(adjM, 100)
 explainer.train(train_idx, val_idx, train_seq, type_emb, node_type, args.l2norm, num_etypes, in_dims, etype, adjM, args.mean, val_seq)
 mae,mse,rmse = explainer.explain(test_idx, test_seq, type_emb, node_type, args.l2norm, etype, adjM, num_etypes)
