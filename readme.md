@@ -1,7 +1,1 @@
-1.First, train base HGNN:
-
-python run.py --dataset DBLP
-
-2.Second, explain the model:
-
-python  explain.py
+Code of "Robust Heterogeneous Graph Neural Networks Explainer with Graph Information Bottleneck"
