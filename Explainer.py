@@ -15,7 +15,7 @@ from attenweight import AttentionWeight
 from vae import VAE
 import pandas as pd
 
-class RAIC():
+class RHGIB():
     def __init__(self, num_etypes, g, model_to_explain, feature_list, in_dims, hidden_dim, khop, device='cuda', epochs=100, lr=0.001, temp=(5.0, 2.0), reg_coefs=(1e-3, 1e-2),sample_bias=0):
         super().__init__()
         
